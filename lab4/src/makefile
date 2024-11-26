@@ -6,3 +6,14 @@ parallel_min_max : /workspaces/os_lab_2019/lab3/src/utils.o /workspaces/os_lab_2
 
 process_memory : 
 	$(CC) -o process_memory process_memory.c $(CFLAGS)
+
+parallel_sum.o: parallel_sum.c
+	$(CC) $^ -o $@
+
+parallel_sum: parallel_sum.o
+	$(CC) $^ -o $@ -lpthread
+
+.PHONY: clear
+
+clear:
+	rm parallel_sum.o parallel_sum parallel_min_max porc process_memory process_memory.o ta tasc.o sum

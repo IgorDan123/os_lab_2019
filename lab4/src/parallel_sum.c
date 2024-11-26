@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
         args[i].array = array; 
         args[i].begin = i * chunk_size; 
         args[i].end = (i == threads_num - 1) ? array_size : (i + 1) * chunk_size; // Обработка последнего потока 
-        if (gcc -pthread -o term term.c(&threads[i], NULL, ThreadSum, (void *)&args[i])) { 
+        if (pthread_create(&threads[i], NULL, ThreadSum, (void *)&args[i])) { 
             printf("Error: pthread_create failed!n"); 
             free(array); 
             return 1; 
